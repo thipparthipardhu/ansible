@@ -1,0 +1,9 @@
+---
+- name: Create Ansible Vault
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Encrypt the file with Ansible Vault
+      shell: ansible-vault encrypt /etc/ansible/secreat.txt
+      args:
+        executable: /bin/bash  # Update this path to the correct location of bash

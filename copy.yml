@@ -1,0 +1,11 @@
+---
+- name: Copy File from worker-01 to worker-02
+  hosts: worker-01
+  become: yes
+
+  tasks:
+    - name: Copy file
+      copy:
+        src: /etc/ansible/copy.yml
+        dest: /etc/ansible/roles
+

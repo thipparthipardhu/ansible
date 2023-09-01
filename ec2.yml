@@ -1,0 +1,25 @@
+---
+- name: Create EC2 instance
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  vars:
+    instance_type: t2.micro
+    ami: ami-0310b105770df9334
+    region: ap-northeast-1
+    key_name: jenkins
+    security_group: default
+    tag_name: my-plb_instance
+  tasks:
+    - name: Launch EC2 Instance
+      amazon.aws.ec2_instance:
+        key_name: "{{ key_name }}"
+        instance_type: "{{ instance_type }}"
+        image_id: "{{ ami }}"
+        region: "{{ region }}"
+        security_groups: "{{ security_group }}"
+        tags:
+          Name: "{{ tag_name }}"
+        wait: true
+      vars:
+        ansible_python_interpreter: /usr/bin/python3 # Replace with the correct path to python3 interpreter
